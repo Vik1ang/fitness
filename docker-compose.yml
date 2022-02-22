@@ -26,3 +26,17 @@ services:
       - ./docker/redis/logs:/logs
     command:
       redis-server
+  
+  postgresql:
+    restart: always
+    image: postgres:14-alpine
+    container_name: postgresql-14
+    volumes:
+      - ./docker/postgresql/data:/var/lib/postgresql/data
+    environment:
+      - "TZ=Asia/Shanghai"
+      - "POSTGRES_DB: postgres"
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=postgres"
+    ports:
+      - 5432:5432
