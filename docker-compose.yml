@@ -1,0 +1,28 @@
+version: '3'
+services:
+  mysql:
+    restart: always
+    image: mysql:5.7.16
+    container_name: mysql-5.7.16
+    volumes:
+      - "./docker/mysql/db:/var/lib/mysql"
+      - "./docker/mysql/conf/my.cnf:/etc/my.cnf"
+      - "./docker/mysql/init:/docker-entrypoint-initdb.d/"
+    environment:
+      - "MYSQL_ROOT_PASSWORD=root"
+      - "TZ=Asia/Shanghai"
+    ports:
+      - 3306:3306
+
+  redis:
+    restart: always
+    image: redis:6.0.16
+    container_name: redis-6.0.16
+    ports:
+      - 6379:6379
+    volumes:
+      - ./docker/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./docker/redis/data:/data"
+      - ./docker/redis/logs:/logs
+    command:
+      redis-server
