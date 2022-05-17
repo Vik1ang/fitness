@@ -1,0 +1,10 @@
+[server]
+    name = "fitness"
+    addr = ":8888"
+
+[server.logger]
+    level = "info"
+
+[database]
+    driver = "mysql"
+
